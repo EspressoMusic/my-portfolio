@@ -3,22 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Shilo Hadad ? Full-Stack Developer & Product Builder. Israel. Open to remote." />
-  <title>Shilo Hadad ? Full-Stack Developer</title>
+  <meta name="description" content="Shilo Hadad ? Full-Stack Developer & Product Builder" />
+  <title>Shilo Hadad ? Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+  <div class="bg-mesh" aria-hidden="true">
+    <span class="blob blob-1"></span>
+    <span class="blob blob-2"></span>
+    <span class="blob blob-3"></span>
+  </div>
   <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress-bar"></span></div>
 
   <header class="header" id="header">
-    <a href="#home" class="logo">
-      <span class="logo-mark" aria-hidden="true"></span>
-      <span data-bind="brand">Portfolio</span>
-    </a>
-
+    <a href="#home" class="logo" data-bind="brand">Shilo Hadad</a>
     <nav class="nav" aria-label="Main">
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
         <span></span><span></span>
@@ -30,111 +31,98 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-
-    <a href="#" class="btn btn-cv" data-bind-href="cvFile" download>CV</a>
+    <a href="#" class="btn btn-cv" data-bind-href="cvFile" download>Resume</a>
   </header>
 
   <main>
-    <section class="hero section-light" id="home">
-      <div class="hero-mark" data-parallax="0.08" aria-hidden="true"></div>
-
-      <div class="hero-stage" data-scroll-scale>
-        <h1 class="hero-title hero-title--back" aria-hidden="true">
-          <span class="hero-line"><span data-bind="tagline">I'M A</span></span>
-          <span class="hero-line"><span data-bind="role">UI/UX DESIGNER</span></span>
-        </h1>
-
-        <figure class="hero-portrait-wrap" data-scroll="scale" data-scroll-delay="2">
-          <img
-            class="hero-portrait"
-            data-bind-src="images.hero"
-            src="assets/images/hero-placeholder.svg"
-            alt="Shilo Hadad"
-            width="420"
-            height="560"
-          />
-        </figure>
-
-        <h1 class="hero-title hero-title--front">
-          <span class="hero-line" data-scroll="clip" data-scroll-delay="0"><span data-bind="tagline">I'M A</span></span>
-          <span class="hero-line" data-scroll="clip" data-scroll-delay="1"><span data-bind="role">UI/UX DESIGNER</span></span>
-        </h1>
-      </div>
-
-      <a href="#about" class="scroll-hint" aria-label="Scroll down" data-scroll="fade" data-scroll-delay="3">
-        <span class="scroll-hint-line"></span>
-        <span class="scroll-hint-text">Scroll</span>
-      </a>
-    </section>
-
-    <section class="about section-dark" id="about">
-      <div class="container about-grid">
-        <div class="about-content">
-          <p class="label" data-scroll="fade-up"><span data-bind="hello">HELLO</span></p>
-          <h2 class="about-heading" data-scroll="fade-up" data-scroll-delay="1">
-            <span data-bind="aboutTitle">I'M</span>
-            <span class="about-name" data-bind="aboutName">YOUR NAME</span>
-          </h2>
-          <p class="about-text" data-scroll="fade-up" data-scroll-delay="2" data-bind="aboutText"></p>
-          <ul class="stats-list" id="stats-list"></ul>
+    <section class="hero" id="home">
+      <div class="hero-inner container">
+        <div class="hero-copy">
+          <p class="pill" data-scroll="fade-up" data-bind="roleSubtitle">Product Builder</p>
+          <h1 class="hero-name" data-scroll="fade-up" data-scroll-delay="1">
+            <span class="hero-first" data-bind="firstName">Shilo</span>
+            <span class="hero-last gradient-text" data-bind="lastName">Hadad</span>
+          </h1>
+          <p class="hero-role" data-scroll="fade-up" data-scroll-delay="2" data-bind="roleLine">Full-Stack Developer</p>
+          <p class="hero-bio" data-scroll="fade-up" data-scroll-delay="3" data-bind="heroBio"></p>
+          <div class="hero-actions" data-scroll="fade-up" data-scroll-delay="4">
+            <a href="#work" class="btn btn-primary">View work</a>
+            <a href="#contact" class="btn btn-ghost">Contact</a>
+          </div>
+          <p class="hero-location" data-scroll="fade" data-scroll-delay="5" data-bind="location"></p>
         </div>
 
-        <figure class="about-visual" data-scroll="fade-left" data-scroll-delay="2">
-          <img
-            class="about-photo"
-            data-bind-src="images.about"
-            src="assets/images/about-placeholder.svg"
-            alt="Shilo Hadad"
-            width="480"
-            height="560"
-          />
-        </figure>
+        <div class="hero-visual" data-scroll="fade-left" data-scroll-delay="2">
+          <div class="photo-glow" aria-hidden="true"></div>
+          <div class="photo-ring" aria-hidden="true"></div>
+          <figure class="photo-frame">
+            <img
+              class="photo-color"
+              data-bind-src="images.hero"
+              src="assets/images/shilo.png"
+              alt="Shilo Hadad"
+              width="480"
+              height="600"
+            />
+          </figure>
+        </div>
       </div>
     </section>
 
-    <section class="work section-light" id="work">
+    <section class="about" id="about">
       <div class="container">
-        <header class="section-head">
-          <p class="label" data-scroll="fade-up">Selected</p>
-          <h2 class="section-title" data-scroll="fade-up" data-scroll-delay="1">Work</h2>
-        </header>
-        <article class="project-card project-card--featured" data-scroll="fade-up" data-scroll-delay="2" id="featured-project"></article>
-        <div class="projects-grid" id="projects-more"></div>
+        <div class="about-top" data-scroll="fade-up">
+          <span class="section-num">01</span>
+          <h2 class="section-title">About</h2>
+        </div>
+        <div class="about-body">
+          <p class="about-lead" data-scroll="fade-up" data-bind="aboutText"></p>
+          <ul class="stats-row" id="stats-list"></ul>
+        </div>
       </div>
     </section>
 
-    <section class="skills section-light" id="skills">
+    <section class="work" id="work">
       <div class="container">
-        <header class="section-head">
-          <p class="label" data-scroll="fade-up">Stack</p>
-          <h2 class="section-title" data-scroll="fade-up" data-scroll-delay="1">Skills</h2>
-        </header>
-        <div class="skills-grid" id="skills-grid"></div>
+        <div class="about-top" data-scroll="fade-up">
+          <span class="section-num">02</span>
+          <h2 class="section-title">Selected work</h2>
+        </div>
+        <div class="bento" id="projects-bento"></div>
       </div>
     </section>
 
-    <section class="services section-dark" id="services">
+    <section class="skills" id="skills">
       <div class="container">
-        <header class="section-head section-head--light">
-          <p class="label" data-scroll="fade-up">Services</p>
-          <h2 class="section-title" data-scroll="fade-up" data-scroll-delay="1">What I do</h2>
-        </header>
-        <div class="services-grid" id="services-grid"></div>
+        <div class="about-top" data-scroll="fade-up">
+          <span class="section-num">03</span>
+          <h2 class="section-title">Skills & services</h2>
+        </div>
+        <div class="skills-layout">
+          <div class="skills-grid" id="skills-grid"></div>
+          <div class="services-stack" id="services-grid"></div>
+        </div>
       </div>
     </section>
 
-    <section class="contact section-light" id="contact">
-      <div class="container contact-inner">
-        <h2 class="contact-title" data-scroll="fade-up">Let's work together</h2>
-        <p class="contact-sub" data-scroll="fade-up" data-scroll-delay="1" data-bind="location">Israel ? Open to Remote</p>
-        <div class="contact-links" id="contact-links" data-scroll="fade-up" data-scroll-delay="2"></div>
-        <div class="social-links" id="social-links" data-scroll="fade-up" data-scroll-delay="3"></div>
+    <section class="contact" id="contact">
+      <div class="container contact-wrap">
+        <div class="contact-card" data-scroll="scale">
+          <span class="section-num">04</span>
+          <h2 class="contact-heading">Let's build something.</h2>
+          <p class="contact-note" data-bind="location"></p>
+          <div class="contact-links" id="contact-links"></div>
+          <div class="social-links" id="social-links"></div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer section-dark">
-    <p data-scroll="fade"><span>&copy;</span> <span id="year"></span> <span data-bind="name">Portfolio</span></p>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span data-bind="name">Shilo Hadad</span>
+      <span>&copy; <span id="year"></span></span>
+    </div>
   </footer>
 
   <script src="content.js"></script>
