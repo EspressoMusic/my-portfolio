@@ -29,7 +29,7 @@
         const key = el.getAttribute("data-bind-src");
         el.src =
           key === "images.hero"
-            ? "assets/images/samurai-hero.png?v=10"
+            ? "assets/images/samurai-hero.png?v=11"
             : "assets/images/shilo.png";
       };
     });
@@ -253,4 +253,55 @@
   initHeader();
   initNav();
   initSmooth();
+  initHeroFx();
 })();
+
+function initHeroFx() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const embersRoot = document.getElementById("hero-embers");
+  const sparksRoot = document.getElementById("hero-sparks");
+  const wrap = document.querySelector(".hero-photo-wrap");
+  if (!embersRoot || !sparksRoot) return;
+
+  for (let i = 0; i < 28; i++) {
+    const e = document.createElement("span");
+    e.className = "ember";
+    const size = 3 + Math.random() * 5;
+    e.style.width = `${size}px`;
+    e.style.height = `${size}px`;
+    e.style.left = `${38 + Math.random() * 24}%`;
+    e.style.bottom = `${5 + Math.random() * 18}%`;
+    e.style.setProperty("--drift", `${(Math.random() - 0.5) * 60}px`);
+    e.style.animationDuration = `${2.2 + Math.random() * 2.5}s`;
+    e.style.animationDelay = `${Math.random() * 3}s`;
+    embersRoot.appendChild(e);
+  }
+
+  for (let i = 0; i < 12; i++) {
+    const s = document.createElement("span");
+    s.className = "spark";
+    s.style.left = `${42 + Math.random() * 16}%`;
+    s.style.bottom = `${20 + Math.random() * 25}%`;
+    s.style.setProperty("--sx", `${(Math.random() - 0.5) * 90}px`);
+    s.style.setProperty("--sy", `${-40 - Math.random() * 100}px`);
+    s.style.animationDuration = `${1.8 + Math.random() * 2}s`;
+    s.style.animationDelay = `${Math.random() * 4}s`;
+    sparksRoot.appendChild(s);
+  }
+
+  if (!wrap) return;
+  const visual = wrap.closest(".hero-visual--warrior");
+  if (!visual) return;
+
+  visual.addEventListener("mousemove", (ev) => {
+    const r = visual.getBoundingClientRect();
+    const x = (ev.clientX - r.left) / r.width - 0.5;
+    const y = (ev.clientY - r.top) / r.height - 0.5;
+    wrap.style.transform = `translateY(-10px) translate(${x * 8}px, ${y * 6}px) scale(1.025)`;
+  });
+
+  visual.addEventListener("mouseleave", () => {
+    wrap.style.transform = "";
+  });
+}
