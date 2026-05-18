@@ -4,22 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Shilo Hadad ? Full-Stack Developer & Product Builder" />
-  <title>Shilo Hadad ? Developer</title>
+  <title>Shilo Hadad | Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;500;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <div class="bg-mesh" aria-hidden="true">
-    <span class="blob blob-1"></span>
-    <span class="blob blob-2"></span>
-    <span class="blob blob-3"></span>
-  </div>
-  <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress-bar"></span></div>
+  <div class="sakura-layer" aria-hidden="true" id="sakura"></div>
+  <div class="ink-deco ink-deco--left" aria-hidden="true"></div>
 
   <header class="header" id="header">
-    <a href="#home" class="logo" data-bind="brand">Shilo Hadad</a>
+    <a href="#home" class="logo">
+      <span class="logo-kanji">?</span>
+      <span data-bind="brand">SHILO</span>
+    </a>
     <nav class="nav" aria-label="Main">
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
         <span></span><span></span>
@@ -27,101 +26,117 @@
       <ul class="nav-list" id="nav-menu">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#work">Work</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#work">Portfolio</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-    <a href="#" class="btn btn-cv" data-bind-href="cvFile" download>Resume</a>
+    <div class="header-actions">
+      <div class="header-social" id="header-social"></div>
+      <a href="#contact" class="btn btn-contact">Contact Me</a>
+    </div>
   </header>
 
   <main>
+    <!-- HERO -->
     <section class="hero" id="home">
-      <div class="hero-inner container">
+      <div class="hero-ink" aria-hidden="true"></div>
+      <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="pill" data-scroll="fade-up" data-bind="roleSubtitle">Product Builder</p>
-          <h1 class="hero-name" data-scroll="fade-up" data-scroll-delay="1">
-            <span class="hero-first" data-bind="firstName">Shilo</span>
-            <span class="hero-last gradient-text" data-bind="lastName">Hadad</span>
+          <p class="hero-greet" data-animate="fade-up">
+            <span data-bind="heroGreeting">Hi! I'm</span>
+            <strong data-bind="firstName">Shilo</strong>
+            <strong class="accent" data-bind="lastName">Hadad</strong>
+            <span class="hero-dash">?</span>
+          </p>
+          <h1 class="hero-title" data-animate="fade-up" data-delay="1">
+            <span data-bind="heroRole">Full-Stack Developer</span>
+            <span class="hero-title-accent" data-bind="heroRoleAccent">& Product Builder</span>
           </h1>
-          <p class="hero-role" data-scroll="fade-up" data-scroll-delay="2" data-bind="roleLine">Full-Stack Developer</p>
-          <p class="hero-bio" data-scroll="fade-up" data-scroll-delay="3" data-bind="heroBio"></p>
-          <div class="hero-actions" data-scroll="fade-up" data-scroll-delay="4">
-            <a href="#work" class="btn btn-primary">View work</a>
-            <a href="#contact" class="btn btn-ghost">Contact</a>
+          <p class="hero-desc" data-animate="fade-up" data-delay="2" data-bind="heroBio"></p>
+          <p class="hero-meta" data-animate="fade-up" data-delay="3">
+            <a data-bind-href="email" data-bind="email" href="mailto:"></a>
+          </p>
+          <div class="hero-btns" data-animate="fade-up" data-delay="4">
+            <a href="#" class="btn btn-outline" data-bind-href="cvFile" download>Download CV</a>
+            <a href="#contact" class="btn btn-solid">Hire Me Now</a>
           </div>
-          <p class="hero-location" data-scroll="fade" data-scroll-delay="5" data-bind="location"></p>
         </div>
-
-        <div class="hero-visual" data-scroll="fade-left" data-scroll-delay="2">
-          <div class="photo-glow" aria-hidden="true"></div>
-          <div class="photo-ring" aria-hidden="true"></div>
-          <figure class="photo-frame">
-            <img
-              class="photo-color"
-              data-bind-src="images.hero"
-              src="assets/images/shilo.png"
-              alt="Shilo Hadad"
-              width="480"
-              height="600"
-            />
+        <div class="hero-visual" data-animate="fade-left" data-delay="2">
+          <div class="hero-sun" aria-hidden="true"></div>
+          <div class="hero-slash" aria-hidden="true"></div>
+          <figure class="hero-photo">
+            <img data-bind-src="images.hero" src="assets/images/shilo.png" alt="Shilo Hadad" />
           </figure>
         </div>
       </div>
     </section>
 
+    <!-- ROLE CARDS -->
+    <section class="roles">
+      <div class="container roles-row" id="role-cards"></div>
+    </section>
+
+    <!-- ABOUT -->
     <section class="about" id="about">
-      <div class="container">
-        <div class="about-top" data-scroll="fade-up">
-          <span class="section-num">01</span>
-          <h2 class="section-title">About</h2>
+      <div class="container about-grid">
+        <div class="about-visual" data-animate="fade-right">
+          <div class="about-sun" aria-hidden="true"></div>
+          <p class="about-sticker">Hi There!</p>
+          <figure class="about-photo">
+            <img data-bind-src="images.about" src="assets/images/shilo.png" alt="Shilo Hadad" />
+          </figure>
         </div>
-        <div class="about-body">
-          <p class="about-lead" data-scroll="fade-up" data-bind="aboutText"></p>
-          <ul class="stats-row" id="stats-list"></ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="work" id="work">
-      <div class="container">
-        <div class="about-top" data-scroll="fade-up">
-          <span class="section-num">02</span>
-          <h2 class="section-title">Selected work</h2>
-        </div>
-        <div class="bento" id="projects-bento"></div>
-      </div>
-    </section>
-
-    <section class="skills" id="skills">
-      <div class="container">
-        <div class="about-top" data-scroll="fade-up">
-          <span class="section-num">03</span>
-          <h2 class="section-title">Skills & services</h2>
-        </div>
-        <div class="skills-layout">
-          <div class="skills-grid" id="skills-grid"></div>
-          <div class="services-stack" id="services-grid"></div>
+        <div class="about-content">
+          <span class="vertical-label">about me</span>
+          <h2 class="about-title" data-animate="fade-up" data-bind="aboutHeading">Need a product built?</h2>
+          <p class="about-text" data-animate="fade-up" data-delay="1" data-bind="aboutText"></p>
+          <div class="about-social" id="about-social" data-animate="fade-up" data-delay="2"></div>
         </div>
       </div>
     </section>
 
+    <!-- SKILLS -->
+    <section class="skills-section" id="skills">
+      <div class="container skills-grid">
+        <div class="skills-copy">
+          <h2 class="skills-title" data-animate="fade-up">What my craft includes</h2>
+          <p class="skills-desc" data-animate="fade-up" data-delay="1">
+            Full-stack development with the discipline of a craftsman?clean code, sharp UX, and deployments that hold in battle.
+          </p>
+          <div class="skill-bars" id="skill-bars" data-animate="fade-up" data-delay="2"></div>
+        </div>
+        <div class="service-tiles" id="service-tiles" data-animate="fade-left" data-delay="1"></div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="portfolio" id="work">
+      <div class="container">
+        <div class="section-head" data-animate="fade-up">
+          <span class="section-kanji">??</span>
+          <h2 class="section-title">Selected Works</h2>
+        </div>
+        <div class="works-grid" id="works-grid"></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
     <section class="contact" id="contact">
-      <div class="container contact-wrap">
-        <div class="contact-card" data-scroll="scale">
-          <span class="section-num">04</span>
-          <h2 class="contact-heading">Let's build something.</h2>
-          <p class="contact-note" data-bind="location"></p>
-          <div class="contact-links" id="contact-links"></div>
-          <div class="social-links" id="social-links"></div>
-        </div>
+      <div class="container contact-box" data-animate="scale">
+        <span class="section-kanji">??</span>
+        <h2>Begin your mission</h2>
+        <p data-bind="location"></p>
+        <div id="contact-links"></div>
+        <div class="contact-social" id="contact-social"></div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="container footer-inner">
+    <div class="container">
       <span data-bind="name">Shilo Hadad</span>
-      <span>&copy; <span id="year"></span></span>
+      <span>? <span id="year"></span></span>
     </div>
   </footer>
 

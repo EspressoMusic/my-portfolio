@@ -1,25 +1,19 @@
-/** Portfolio content — Shilo Hadad */
+/** Portfolio — Shilo Hadad (swap images in assets/images/) */
 window.PORTFOLIO_CONTENT = {
-  brand: "Shilo Hadad",
+  brand: "SHILO",
   name: "Shilo Hadad",
   firstName: "Shilo",
   lastName: "Hadad",
-  roleSubtitle: "Full-Stack Developer & Product Builder",
-  roleLine: "I design, build & ship digital products",
+  heroGreeting: "Hi! I'm",
+  heroRole: "Full-Stack Developer",
+  heroRoleAccent: "& Product Builder",
   heroBio:
-    "Websites, SaaS platforms, and business systems—from idea to production. Based in Israel, open to remote.",
-  location: "Israel · Open to remote",
-  aboutText:
-    "I'm a Full-Stack Developer who leads products end to end: planning, UI/UX, development, cloud deployment, and optimization. I've shipped real-world apps for businesses and I'm currently building Sleepy, a finance platform, and a matchmaking management system.",
-  stats: [
-    { value: 3, suffix: "+", label: "Years exp." },
-    { value: 15, suffix: "+", label: "Projects" },
-    { value: 3, suffix: "", label: "Live products" },
-  ],
-  cvFile: "",
+    "I forge websites, SaaS platforms, and business systems—from concept to deployment. Israel based, open to remote missions worldwide.",
   email: "shilohdhd1@gmail.com",
   phone: "+972-58-612-2187",
   phoneTel: "+972586122187",
+  location: "Israel · Remote",
+  cvFile: "",
   social: {
     linkedin: "https://www.linkedin.com/in/shilo-hadad-784a9822a",
     github: "https://github.com/EspressoMusic",
@@ -27,43 +21,50 @@ window.PORTFOLIO_CONTENT = {
   },
   images: {
     hero: "assets/images/shilo.png",
+    about: "assets/images/shilo.png",
   },
+  roleCards: [
+    { icon: "code", title: "Full-Stack Dev", tagline: "React · Next.js · APIs" },
+    { icon: "layers", title: "SaaS Builder", tagline: "Products end to end" },
+    { icon: "zap", title: "Freelancer", tagline: "Ship fast · clean UX" },
+  ],
+  aboutHeading: "Need a product built? I can help you!",
+  aboutText:
+    "I'm a Full-Stack Developer who leads every stage—planning, UI/UX, development, cloud deployment, and optimization. I've shipped production apps for real businesses and I'm currently building Sleepy, a finance platform, and a matchmaking management system.",
+  skillBars: [
+    { name: "React / Next.js", value: 92 },
+    { name: "TypeScript", value: 88 },
+    { name: "Node.js & APIs", value: 85 },
+    { name: "UI/UX & Figma", value: 80 },
+    { name: "Cloud Deploy", value: 82 },
+  ],
+  serviceTiles: [
+    { icon: "monitor", label: "Web Apps" },
+    { icon: "grid", label: "SaaS Systems" },
+    { icon: "pen", label: "UI/UX Design" },
+    { icon: "cloud", label: "Deployment" },
+  ],
   projects: [
     {
-      tag: "SaaS · Founder",
+      tag: "Founder",
       title: "Sleepy",
       subtitle: "Business Management Platform",
-      description:
-        "Scalable ops platform for independent businesses—dashboards, workflows, React, Next.js, Supabase.",
-      image: "assets/images/project-placeholder.svg",
+      description: "Dashboards, workflows, React, Next.js, Supabase.",
       link: "#",
-      featured: true,
     },
     {
       tag: "FinTech",
       title: "Finance App",
-      subtitle: "Workflow & organization",
-      description: "APIs, modular backend, responsive UI, real-time logic.",
-      image: "assets/images/project-placeholder.svg",
+      subtitle: "Workflow platform",
+      description: "APIs, modular backend, real-time logic.",
       link: "#",
     },
     {
       tag: "Next.js",
       title: "Matchmaking System",
       subtitle: "Management platform",
-      description: "Dashboards, automation, profile & communication tools.",
-      image: "assets/images/project-placeholder.svg",
+      description: "Dashboards, automation, profiles.",
       link: "#",
     },
-  ],
-  services: [
-    { title: "Full-Stack Dev", desc: "React, Next.js, APIs, databases." },
-    { title: "SaaS Products", desc: "Architecture to deployment." },
-    { title: "UI/UX & Cloud", desc: "Figma, Vercel, Render, SSL." },
-  ],
-  skills: [
-    { title: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind"] },
-    { title: "Backend", items: ["Node.js", "FastAPI", "Supabase", "Firebase"] },
-    { title: "Deploy", items: ["Vercel", "Render", "Git", "Figma"] },
   ],
 };
