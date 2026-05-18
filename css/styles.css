@@ -361,7 +361,7 @@ ul {
   min-height: 480px;
 }
 
-.hero-visual--scene {
+.hero-visual--cutout {
   min-height: clamp(420px, 75vh, 680px);
   padding: 0;
   background: transparent;
@@ -390,27 +390,26 @@ ul {
   margin-bottom: -2rem;
 }
 
-.hero-photo--scene {
-  width: min(100%, 420px);
+.hero-photo--cutout {
+  width: min(100%, 460px);
   margin-bottom: 0;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 24px 56px rgba(28, 18, 16, 0.18);
-  border: 2px solid rgba(185, 28, 28, 0.2);
+  background: transparent;
 }
 
 .hero-photo img {
   width: 100%;
   height: auto;
-  object-fit: cover;
   display: block;
 }
 
-.hero-photo--scene img {
-  max-height: min(75vh, 640px);
-  width: 100%;
-  object-fit: cover;
-  object-position: center top;
+.hero-photo--cutout img {
+  max-height: min(78vh, 660px);
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 16px 32px rgba(185, 28, 28, 0.12));
 }
 
 /* ROLE CARDS */
