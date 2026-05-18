@@ -368,9 +368,7 @@ ul {
 }
 
 .hero-visual--samurai .hero-aura {
-  background: radial-gradient(circle at 50% 75%, rgba(185, 28, 28, 0.1), transparent 50%);
-  animation: none;
-  opacity: 1;
+  display: none;
 }
 
 .hero-sun {
@@ -408,6 +406,10 @@ ul {
   filter: drop-shadow(0 24px 40px rgba(28, 18, 16, 0.25));
 }
 
+.hero-photo--samurai {
+  background: transparent;
+}
+
 .hero-photo--samurai img {
   max-height: min(72vh, 620px);
   width: auto;
@@ -415,7 +417,7 @@ ul {
   margin-inline: auto;
   object-fit: contain;
   object-position: center bottom;
-  filter: drop-shadow(0 12px 28px rgba(28, 18, 16, 0.15));
+  filter: none;
 }
 
 /* ROLE CARDS */
