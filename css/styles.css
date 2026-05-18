@@ -415,15 +415,7 @@ ul {
   margin-inline: auto;
   object-fit: contain;
   object-position: center bottom;
-  mix-blend-mode: lighten;
-  filter: drop-shadow(0 12px 28px rgba(28, 18, 16, 0.12));
-}
-
-/* Fallback if blend is unsupported */
-@supports not (mix-blend-mode: lighten) {
-  .hero-photo--samurai img {
-    mix-blend-mode: normal;
-  }
+  filter: drop-shadow(0 12px 28px rgba(28, 18, 16, 0.15));
 }
 
 /* ROLE CARDS */
