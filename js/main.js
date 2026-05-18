@@ -26,9 +26,10 @@
       if (!v) return;
       el.src = v;
       el.onerror = () => {
+        const key = el.getAttribute("data-bind-src");
         el.src =
-          el.getAttribute("data-bind-src") === "images.hero"
-            ? "assets/images/samurai-hero.png"
+          key === "images.hero"
+            ? "assets/images/samurai-hero.png?v=5"
             : "assets/images/shilo.png";
       };
     });
