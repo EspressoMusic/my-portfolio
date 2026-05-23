@@ -47,11 +47,11 @@ window.PORTFOLIO_CONTENT = {
   ],
   projects: [
     {
-      tag: "Founder",
-      title: "Sleepy",
-      subtitle: "Business Management Platform",
-      description: "Dashboards, workflows, React, Next.js, Supabase.",
-      link: "#",
+      tag: "Web Studio",
+      title: "PicasoW",
+      subtitle: "Website Building Studio",
+      description: "Custom websites and landing pages—design, development, responsive UI, and launch.",
+      link: "https://picasow.website/",
     },
     {
       tag: "FinTech",

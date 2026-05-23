@@ -30,7 +30,7 @@
         el.src =
           key === "images.hero"
             ? "assets/images/shiloli.png?v=1"
-            : "assets/images/samurai-about.png?v=12";
+            : "assets/images/samurai-about.png?v=13";
       };
     });
     document.querySelectorAll("[data-bind-href]").forEach((el) => {
@@ -121,13 +121,13 @@
     grid.innerHTML = C.projects
       .map(
         (p, i) => `
-      <article class="work-card" data-animate="fade-up" data-delay="${i}">
+      <a class="work-card" href="${p.link || "#"}" target="_blank" rel="noopener noreferrer" data-animate="fade-up" data-delay="${i}">
         <span class="work-tag">${p.tag}</span>
         <h3>${p.title}</h3>
         <p class="work-sub">${p.subtitle}</p>
         <p>${p.description}</p>
-        <a href="${p.link || "#"}" target="_blank" rel="noopener">View →</a>
-      </article>`
+        <span class="work-card-cta">View →</span>
+      </a>`
       )
       .join("");
   }
