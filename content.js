@@ -85,6 +85,7 @@ window.PORTFOLIO_CONTENT = {
       subtitle: "Management platform",
       description: "Dashboards, automation, profiles.",
       link: "#",
+      comingSoon: true,
     },
   ],
 };

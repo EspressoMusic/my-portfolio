@@ -201,16 +201,27 @@
     const grid = document.getElementById("works-grid");
     if (!grid || !C.projects) return;
     grid.innerHTML = C.projects
-      .map(
-        (p, i) => `
-      <a class="work-card" href="${p.link || "#"}" target="_blank" rel="noopener noreferrer" data-animate="fade-up" data-delay="${i}">
+      .map((p, i) => {
+        const inner = `
         <span class="work-tag">${p.tag}</span>
         <h3>${p.title}</h3>
         <p class="work-sub">${p.subtitle}</p>
         <p>${p.description}</p>
-        <span class="work-card-cta">View →</span>
-      </a>`
-      )
+        <span class="work-card-cta">${p.comingSoon ? "Coming Soon" : "View →"}</span>`;
+
+        if (p.comingSoon) {
+          return `
+      <article class="work-card work-card--soon" data-animate="fade-up" data-delay="${i}" aria-label="${p.title} — coming soon">
+        <span class="work-soon-badge" aria-hidden="true">Coming Soon</span>
+        <div class="work-card-content">${inner}</div>
+      </article>`;
+        }
+
+        return `
+      <a class="work-card" href="${p.link || "#"}" target="_blank" rel="noopener noreferrer" data-animate="fade-up" data-delay="${i}">
+        ${inner}
+      </a>`;
+      })
       .join("");
   }
 

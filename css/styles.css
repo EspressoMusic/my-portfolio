@@ -1999,6 +1999,50 @@ body.tile-tap-mode .tile.is-flipped .tile-front::after {
   color: var(--crimson);
 }
 
+.work-card--soon {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.52;
+  filter: saturate(0.7);
+  border-top-color: rgba(185, 28, 28, 0.35);
+}
+
+.work-card--soon::before {
+  display: none;
+}
+
+.work-card--soon:hover {
+  transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  box-shadow: var(--shadow);
+  border-color: rgba(28, 18, 16, 0.08);
+}
+
+.work-card--soon .work-card-content {
+  opacity: 0.85;
+}
+
+.work-soon-badge {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  letter-spacing: 0.14em;
+  color: var(--crimson);
+  text-transform: uppercase;
+  transform: rotate(-10deg);
+  text-shadow:
+    0 0 24px rgba(244, 239, 228, 0.9),
+    2px 2px 0 rgba(28, 18, 16, 0.15);
+  pointer-events: none;
+}
+
+.work-card--soon .work-card-cta {
+  visibility: hidden;
+}
+
 /* CONTACT */
 .contact {
   padding: 5rem 0 clamp(7rem, 14vw, 9rem);
