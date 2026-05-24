@@ -13,10 +13,9 @@ window.PORTFOLIO_CONTENT = {
   phone: "+972-58-612-2187",
   phoneTel: "+972586122187",
   location: "Israel · Remote",
-  cvFile: "",
+  cvFile: "assets/Shilo-Hadad-Resume.pdf",
   social: {
-    linkedin: "https://www.linkedin.com/in/shilo-hadad-784a9822a",
-    github: "https://github.com/EspressoMusic",
+    linkedin: "https://www.linkedin.com/in/shilo-hadad-784a9822a/",
     portfolio: "https://espressomusic.github.io/portfolio-Shilo/",
   },
   images: {
@@ -40,10 +39,30 @@ window.PORTFOLIO_CONTENT = {
     { name: "Cloud Deploy", value: 82 },
   ],
   serviceTiles: [
-    { icon: "monitor", label: "Web Apps" },
-    { icon: "grid", label: "SaaS Systems" },
-    { icon: "pen", label: "UI/UX Design" },
-    { icon: "cloud", label: "Deployment" },
+    {
+      icon: "monitor",
+      label: "Web Apps",
+      description:
+        "I build responsive, performant web applications with React and Next.js—from landing pages to complex dashboards users love.",
+    },
+    {
+      icon: "grid",
+      label: "SaaS Systems",
+      description:
+        "I architect and ship full SaaS products end to end: auth, billing, admin panels, and scalable backends that grow with your business.",
+    },
+    {
+      icon: "pen",
+      label: "UI/UX Design",
+      description:
+        "I translate ideas into clean, intentional interfaces—wireframes to polished UI in Figma, with accessibility baked in from day one.",
+    },
+    {
+      icon: "cloud",
+      label: "Deployment",
+      description:
+        "I deploy and maintain production systems on the cloud—CI/CD pipelines, monitoring, and infrastructure that stays reliable under load.",
+    },
   ],
   projects: [
     {
@@ -55,10 +74,10 @@ window.PORTFOLIO_CONTENT = {
     },
     {
       tag: "FinTech",
-      title: "Finance App",
-      subtitle: "Workflow platform",
-      description: "APIs, modular backend, real-time logic.",
-      link: "#",
+      title: "Peymiz",
+      subtitle: "Finance & workflow web app",
+      description: "Full-stack platform—dashboards, APIs, modular backend, and real-time business logic.",
+      link: "https://espressomusic.github.io/Peymis-Web/",
     },
     {
       tag: "Next.js",

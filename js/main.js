@@ -41,15 +41,26 @@
     });
     document.title = `${C.name} — ${C.heroRole}`;
 
-    const cv = document.querySelector('[data-bind-href="cvFile"]');
-    if (cv && !C.cvFile) cv.style.display = "none";
+    document.querySelectorAll('[data-bind-href="cvFile"]').forEach((cv) => {
+      if (!C.cvFile) cv.style.display = "none";
+    });
   }
 
   function socialLinks(className) {
-    const labels = { linkedin: "LinkedIn", github: "GitHub", portfolio: "Portfolio" };
-    return Object.entries(C.social || {})
-      .filter(([, u]) => u && u !== "#")
-      .map(([k, u]) => `<a href="${u}" target="_blank" rel="noopener" class="${className}">${labels[k] || k}</a>`)
+    const labels = { linkedin: "LinkedIn", portfolio: "Portfolio", cv: "Download CV" };
+    const order = ["linkedin", "cv", "portfolio"];
+    const urls = { ...(C.social || {}), ...(C.cvFile ? { cv: C.cvFile } : {}) };
+
+    return order
+      .filter((k) => k !== "github" && urls[k] && urls[k] !== "#")
+      .map((k) => {
+        const u = urls[k];
+        const label = labels[k] || k;
+        if (k === "cv") {
+          return `<a href="${u}" class="${className} ${className}--cv" download="Shilo-Hadad-Resume.pdf" aria-label="Download CV (PDF)">${label}</a>`;
+        }
+        return `<a href="${u}" target="_blank" rel="noopener noreferrer" class="${className} ${className}--${k}" aria-label="${label} (opens in new tab)">${label}</a>`;
+      })
       .join("");
   }
 
@@ -75,7 +86,7 @@
     row.innerHTML = C.roleCards
       .map(
         (c, i) => `
-      <a href="#skills" class="role-card" data-animate="fade-up" data-delay="${i}">
+      <a href="#skills" class="role-card" data-animate="pop" data-delay="${i}">
         <span class="role-icon">${ICONS[c.icon] || ICONS.code}</span>
         <div>
           <strong>${c.title}</strong>
@@ -107,12 +118,83 @@
     wrap.innerHTML = C.serviceTiles
       .map(
         (t, i) => `
-      <article class="tile" data-animate="fade-up" data-delay="${i}">
-        <span class="tile-icon">${ICONS[t.icon] || ICONS.monitor}</span>
-        <span>${t.label}</span>
+      <article class="tile" data-animate="fade-up" data-delay="${i}" tabindex="0" role="button" aria-expanded="false" aria-label="${t.label}">
+        <div class="tile-inner">
+          <div class="tile-face tile-front">
+            <span class="tile-icon">${ICONS[t.icon] || ICONS.monitor}</span>
+            <span class="tile-label">${t.label}</span>
+          </div>
+          <div class="tile-face tile-back">
+            <p class="tile-desc">${t.description || ""}</p>
+          </div>
+        </div>
       </article>`
       )
       .join("");
+  }
+
+  function initServiceTiles() {
+    const wrap = document.getElementById("service-tiles");
+    if (!wrap) return;
+
+    const tiles = wrap.querySelectorAll(".tile");
+    if (!tiles.length) return;
+
+    const tapFlipMq = window.matchMedia("(max-width: 1024px), (hover: none), (pointer: coarse)");
+
+    function syncTapMode() {
+      const useTap = tapFlipMq.matches;
+      document.body.classList.toggle("tile-tap-mode", useTap);
+      return useTap;
+    }
+
+    function closeAll() {
+      tiles.forEach((t) => {
+        t.classList.remove("is-flipped");
+        t.setAttribute("aria-expanded", "false");
+      });
+    }
+
+    function toggleTile(tile) {
+      const open = tile.classList.contains("is-flipped");
+      closeAll();
+      if (!open) {
+        tile.classList.add("is-flipped");
+        tile.setAttribute("aria-expanded", "true");
+      }
+    }
+
+    syncTapMode();
+    tapFlipMq.addEventListener("change", syncTapMode);
+
+    tiles.forEach((tile) => {
+      tile.addEventListener("click", (e) => {
+        if (!tapFlipMq.matches) return;
+        e.stopPropagation();
+        toggleTile(tile);
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!tapFlipMq.matches) return;
+      if (e.target.closest(".tile")) return;
+      closeAll();
+    });
+
+    tiles.forEach((tile) => {
+      tile.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        e.preventDefault();
+        toggleTile(tile);
+      });
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeAll();
+    });
+
+    document.getElementById("tile-backdrop")?.remove();
+    document.body.classList.remove("tile-expanded-open");
   }
 
   function renderWorks() {
@@ -139,12 +221,12 @@
         entries.forEach((e) => {
           if (!e.isIntersecting) return;
           const el = e.target;
-          const d = parseInt(el.getAttribute("data-delay") || "0", 10) * 90;
+          const d = parseInt(el.getAttribute("data-delay") || "0", 10) * 110;
           setTimeout(() => el.classList.add("is-visible"), d);
           obs.unobserve(el);
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -5% 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -8% 0px" }
     );
     els.forEach((el) => obs.observe(el));
     window.addEventListener("load", () => {
@@ -152,6 +234,58 @@
         if (el.getBoundingClientRect().top < window.innerHeight * 0.92) el.classList.add("is-visible");
       });
     });
+  }
+
+  function initCardTilt() {
+    if (reduced) return;
+    document.querySelectorAll(".work-card, .role-card").forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.setProperty("--tilt-x", `${y * -7}deg`);
+        card.style.setProperty("--tilt-y", `${x * 7}deg`);
+      });
+      card.addEventListener("mouseleave", () => {
+        card.style.removeProperty("--tilt-x");
+        card.style.removeProperty("--tilt-y");
+      });
+    });
+  }
+
+  function initScrollEffects() {
+    if (reduced) return;
+
+    const bar = document.getElementById("scroll-progress-bar");
+    const heroVisual = document.querySelector(".hero-visual--warrior");
+    const sections = document.querySelectorAll(".reveal-section");
+    const navLinks = document.querySelectorAll('.nav-list a[href^="#"]');
+
+    const onScroll = () => {
+      const scrollTop = window.scrollY;
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      if (bar && docH > 0) bar.style.width = `${Math.min(100, (scrollTop / docH) * 100)}%`;
+
+      if (heroVisual) {
+        const p = Math.min(scrollTop * 0.12, 72);
+        heroVisual.style.transform = `translateY(${p}px)`;
+      }
+
+      let current = "home";
+      sections.forEach((sec) => {
+        const top = sec.offsetTop - 120;
+        if (scrollTop >= top) current = sec.id || current;
+        if (scrollTop + window.innerHeight * 0.35 >= top) sec.classList.add("is-inview");
+      });
+
+      navLinks.forEach((a) => {
+        const id = (a.getAttribute("href") || "").slice(1);
+        a.classList.toggle("is-active", id === current);
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
   }
 
   function initSkillBars() {
@@ -190,7 +324,7 @@
     if (reduced) return;
     const layer = document.getElementById("sakura");
     if (!layer) return;
-    const petals = 18;
+    const petals = 28;
     for (let i = 0; i < petals; i++) {
       const p = document.createElement("span");
       p.className = "petal";
@@ -200,6 +334,56 @@
       p.style.opacity = `${0.15 + Math.random() * 0.35}`;
       layer.appendChild(p);
     }
+  }
+
+  function initRoleConfetti() {
+    if (reduced) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+    const layer = document.getElementById("role-confetti");
+    if (!layer) return;
+
+    const kinds = ["petal", "petal", "petal", "gold", "crimson", "slash", "ring", "kanji"];
+    const kanji = ["侍", "刀", "武", "桜"];
+    let lastBurst = 0;
+
+    function spawn(card) {
+      const now = Date.now();
+      if (now - lastBurst < 350) return;
+      lastBurst = now;
+
+      const r = card.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const cy = r.top + r.height / 2;
+      const count = 22;
+
+      for (let i = 0; i < count; i++) {
+        const kind = kinds[Math.floor(Math.random() * kinds.length)];
+        const el = document.createElement("span");
+        el.className = `jp-confetti jp-confetti--${kind}`;
+        if (kind === "kanji") el.textContent = kanji[Math.floor(Math.random() * kanji.length)];
+
+        el.style.left = `${cx}px`;
+        el.style.top = `${cy}px`;
+
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 70 + Math.random() * 130;
+        const dx = Math.cos(angle) * dist;
+        const dy = Math.sin(angle) * dist - 50;
+
+        el.style.setProperty("--dx", `${dx}px`);
+        el.style.setProperty("--dy", `${dy}px`);
+        el.style.setProperty("--rot", `${Math.floor(Math.random() * 540 - 270)}deg`);
+        el.style.setProperty("--dur", `${0.75 + Math.random() * 0.55}s`);
+
+        layer.appendChild(el);
+        el.addEventListener("animationend", () => el.remove(), { once: true });
+      }
+    }
+
+    document.querySelectorAll(".role-card").forEach((card) => {
+      card.addEventListener("mouseenter", () => spawn(card));
+    });
   }
 
   function initHeader() {
@@ -247,6 +431,10 @@
   initHeader();
   initNav();
   initSmooth();
+  initScrollEffects();
+  initCardTilt();
+  initRoleConfetti();
+  initServiceTiles();
   initPhotoParallax(".hero-photo-wrap", ".hero-visual--warrior", 1.025);
   initPhotoParallax(".about-photo-wrap", ".about-visual", 1.04);
   initPhotoParallax(".contact-photo-wrap", ".contact-visual", 1.08);
